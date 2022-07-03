@@ -71,7 +71,7 @@ function insertContato(contato) {
 
     // Insere o novo objeto no array
     db.data.push(novoContato);
-    displayMessage("Contato inserido com sucesso");
+    displayMessage("Partida criada com sucesso!");
 
     // Atualiza os dados no Local Storage
     localStorage.setItem('db_contato', JSON.stringify(db));
@@ -98,7 +98,7 @@ function deleteContato(id) {
     // Filtra o array removendo o elemento com o id passado
     db.data = db.data.filter(function (element) { return element.id != id });
 
-    displayMessage("Contato removido com sucesso");
+    displayMessage("Partida removida com sucesso");
 
     // Atualiza os dados no Local Storage
     localStorage.setItem('db_contato', JSON.stringify(db));
