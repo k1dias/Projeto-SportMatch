@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style-home.css">
+    <script src="home.js"></script>
+    <title>Home</title>
+</head>
+<body>
+    <nav>
+        <div class="logo"><a href="home.html" id="teste">sportmatch</a>  </div>
+
+        <div class="menu-btn">
+            <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
+        </div>
+
+        <ul>
+            <li> <a href="home.html" class="active"> Home </a> </li>
+            <li> <a href="lista_partidas.html"> Pesquise partidas</a> </li>
+            <li> <a href="criar_partidas.html" > Crie sua partida</a> </li>
+        </ul>
+    </nav>
+    <main>
+        <div class="main-content">
+            <h1 class="primary-text">Encontre sua turma!</h1>
+            <h2 class="second-text">NÃO PERCA TEMPO, CRIE CONEXÕES</h2>
+            <div class="btns">
+                <button onclick="search()" class="btn-exp">pesquise partidas</button>
+                <button onclick="create()" class="btn-personal">crie sua partida</button>
+            </div>
+        </div>
+
+        <div class="sobre">
+            <img src="futebol.svg" class="image-home" alt="ola">
+        </div>
+    </main>
+</body>
+</html>

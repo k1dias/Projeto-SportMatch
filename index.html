@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="./login.js"></script>
+    <title>Login</title>
+</head>
+<body>  
+    <header>
+        <div class="logo">
+            <h1 style="text-align:center;">sportmatch</h1>
+        </div>    
+    </header>
+    <div class="main-login">        
+        <div class="left-login">
+            <h1>Faça login<br>E entre no nosso time!</h1>
+            <img src="sport.svg" class="left-login-image" alt="Animação esporte">
+        </div>
+        <div class="right-login">
+            <div class="card-login">
+                <h1>Fazer login</h1>
+
+                <div id="msgError"></div>
+                <div id="msgSucces"></div>
+                
+                <div class="textfield">
+                    <label for="usuario">Endereço de email</label>
+                    <input id="usuario" type="text" name="usuario" placeholder="Endereço de email">
+                </div>
+                <div class="textfield">
+                    <label for="senha">Senha</label>
+                    <input id="senha" type="password" name="senha" placeholder="Senha">
+                </div>
+                <div class="register">
+                    <p>Novo por aqui? <a href="telaCadastro.html" style="color: #00ff88" >Crie uma conta!</a></p>
+                </div>
+                <button onclick="login()" class="btn-login">Login</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

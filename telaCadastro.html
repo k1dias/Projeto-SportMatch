@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/56c7a91d3f.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleCad.css">
+    <title>Cadastro</title>
+</head>
+
+<body>  
+
+    <header>
+        <div class="logo">
+            <h1 style="text-align:center;">sportmatch</h1>
+        </div>    
+    </header>
+
+    <div class="main-login">
+
+        <div class="left-login">
+            <h1>Você está a poucos cliques<br>Dos seus esportes favoritos!</h1>
+            <img src="soccer.svg" class="left-login-image" alt="Animação esporte">
+        </div>
+
+        <div class="right-login">
+            <div class="card-login">
+                <h1>Criar uma conta</h1>
+
+                <div id="msgError"></div>
+                <div id="msgSucces"></div>
+                <div class="register">
+                    <p>Já tem uma conta? <a href="index.html" style="color: #00ff88" >faça login!</a></p>
+                </div>
+                <div class="textfield">
+                    <label id="labelUsuario" for="usuario">Endereço de email</label>
+                    <input id="usuario" type="text" placeholder="Endereço de email">
+                </div>
+                <div class="textfield">
+                    <label id="labelNome" for="nome">Nome</label>
+                    <input id="nome" type="text" placeholder="Nome">
+                </div>
+                <div class="textfield">
+                    <label id="labelSobrenome" for="sobrenome">Sobrenome</label>
+                    <input id="sobrenome" type="text" placeholder="Sobrenome">
+                </div>
+                <div class="textfield">
+                    <label id="labelSenha" for="senha">Senha</label>
+                    <input id="senha" type="password" placeholder="Senha">
+                </div>
+                <div class="textfield">
+                    <label id="labelConfirmaSenha" for="confirmaSenha">Confirme sua senha</label>
+                    <input id="confirmaSenha" type="password" placeholder="Confirme sua senha">
+                </div>
+                
+                <button onclick="cadastrar()" class="btn-continue">Criar conta</button>
+            
+            </div>
+        </div>
+    </div>
+    <script src="./cadastro.js"></script>
+</body>
+</html>

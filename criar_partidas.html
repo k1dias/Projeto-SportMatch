@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastro de partidas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylePgInicio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body onload="init()">
+    <nav>
+        <div class="logo"><a href="#" id="teste">sportmatch</a>  </div>
+
+        <div class="menu-btn">
+            <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
+        </div>
+
+        <ul>
+            <li> <a href="home.html"> Home </a> </li>
+            <li> <a href="lista_partidas.html"> Pesquise partidas</a> </li>
+            <li> <a href="criar_partidas.html" class="active"> Crie sua partida</a> </li>
+        </ul>
+    </nav>  
+
+    <div class="Title">
+        <h1>Crie sua partida!</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div id="msg" class="col-sm-10 offset-sm-1 ">
+                <!--<div class="alert alert-warning">Contato não encontrado.</div>-->
+            </div>
+        </div>
+
+        <form id="form-contato">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <label for="inputId">Id</label>
+                    <input type="text" class="form-control" id="inputId" placeholder="ID" disabled>
+                </div>
+                <div class="col-sm-8">
+                    <label for="inputNome">Titulo da partida</label>
+                    <input type="text" class="form-control" id="inputNome" required placeholder="O titulo da sua partida vai aqui!">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-5">
+                    <label for="inputTelefone">Contato</label>
+                    <input type="text" class="form-control" id="inputTelefone" required placeholder="Contato">
+                </div>
+                <div class="col-sm-7">
+                    <label for="inputEmail">Criador do evento</label>
+                    <input type="email" class="form-control" id="inputEmail" required placeholder="Coloque seu e-mail aqui!">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="inputCidade">Endereço</label>
+                    <input type="text" class="form-control" id="inputCidade" placeholder="Onde vai rolar sua partida?" >
+                </div>
+                <div class="col-sm-6">
+                    <label for="inputCategoria">Esporte</label>
+                    <select name="inputCategoria" id="inputCategoria" onchange="ListaContatos()"  class="form-control">
+                        <option selected disabled value="">Selecione a Categoria</option>
+                        <option value="Futebol">Futebol</option>
+                        <option value="Vôlei">Vôlei</option>
+                        <option value="Basquete">Basquete</option>
+                        <option value="Futvôlei">Futvôlei</option>
+
+                    </select>
+                </div>
+            </div>
+            
+            
+            <div class="form-group row">
+                <div class="col-sm-13">
+                    <a href="lista_partidas.html"><input type="button" class="btn btn-success" id="btnClear" value="Pesquisar partidas!"></a>
+                    <input type="button" class="btn btn-success" id="btnInsert" value="Inserir">
+                    
+                </div>
+            </div>
+        </form>
+
+        <footer>
+            <p> © 2022 Copyright: TRABALHO INTERDISCIPLINAR: APLICAÇÕES WEB - <b>ICEI PUC MINAS</b> </p>
+        </footer>
+
+        
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        function exibeContatos() {
+            // Remove todas as linhas do corpo da tabela
+            $("#table-contatos").html("");
+
+            // Popula a tabela com os registros do banco de dados
+            for (i = 0; i < db.data.length; i++) {
+                let contato = db.data[i];    
+                $("#table-contatos").append(`<tr><td scope="row">${contato.id}</td>
+                                                <td>${contato.nome}</td>
+                                                <td>${contato.telefone}</td>
+                                                <td>${contato.email}</td>
+                                                <td>${contato.cidade}</td>
+                                                <td>${contato.categoria}</td>
+                                            </tr>`);
+            }
+        }
+
+        function init() {
+            // Adiciona funções para tratar os eventos 
+            $("#btnInsert").click(function () {
+                // Verfica se o formulário está preenchido corretamente
+                if (!$('#form-contato')[0].checkValidity()) {
+                    displayMessage("Preencha o formulário corretamente.");
+                    return;
+                }
+
+                // Obtem os valores dos campos do formulário
+                let campoNome = $("#inputNome").val();
+                let campoTelefone = $("#inputTelefone").val();
+                let campoEmail = $('#inputEmail').val();
+                let campoCidade = $("#inputCidade").val();
+                let campoCategoria = $('#inputCategoria').val();
+                let contato = { nome: campoNome, 
+                    telefone: campoTelefone, 
+                    email: campoEmail, 
+                    cidade: campoCidade, 
+                    categoria: campoCategoria,
+                     };
+
+                insertContato(contato);
+
+                // Reexibe os contatos
+                exibeContatos();
+
+                // Limpa o formulario
+                $("#form-contato")[0].reset();
+            });
+
+            // Intercepta o click do botão Alterar
+            $("#btnUpdate").click(function () {
+                // Obtem os valores dos campos do formulário
+                let campoId = $("#inputId").val();
+                if (campoId == "") {
+                    displayMessage("Selecione um contato para ser alterado.");
+                    return;
+                }
+                let campoNome = $("#inputNome").val();
+                let campoTelefone = $("#inputTelefone").val();
+                let campoEmail = $("#inputEmail").val();
+                let campoCidade = $("#inputCidade").val();
+                let campoCategoria = $("#inputCategoria").val();
+                let contato = { nome: campoNome, 
+                    telefone: campoTelefone, 
+                    email: campoEmail, 
+                    cidade: campoCidade, 
+                    categoria: campoCategoria, };
+
+                updateContato(parseInt(campoId), contato);
+
+                // Reexibe os contatos
+                exibeContatos();
+
+                // Limpa o formulario
+                $("#form-contato")[0].reset();
+            });
+
+            // Intercepta o click do botão Excluir
+            $("#btnDelete").click(function () {
+                let campoId = $("#inputId").val();
+                if (campoId == "") {
+                    displayMessage("Selecione um contato a ser excluído.");
+                    return;
+                }
+                deleteContato(parseInt(campoId));
+
+                // Reexibe os contatos
+                exibeContatos();
+
+                // Limpa o formulario
+                $("#form-contato")[0].reset();
+            });
+
+            // Intercepta o click do botão Listar Contatos
+            $("#btnClear").click(function () {
+                $("#form-contato")[0].reset();
+            });
+
+            // Oculta a mensagem de aviso após alguns segundos
+            $('#msg').bind("DOMSubtreeModified", function () {
+                window.setTimeout(function () {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                        $(this).remove();
+                    });
+                }, 5000);
+            });
+
+            // Preenche o formulário quando o usuario clicar em uma linha da tabela 
+            $("#grid-contatos").on("click", "tr", function (e) {
+                let linhaContato = this;
+                colunas = linhaContato.querySelectorAll("td");
+
+                $("#inputId").val(colunas[0].innerText);
+                $("#inputNome").val(colunas[1].innerText);
+                $("#inputTelefone").val(colunas[2].innerText);
+                $("#inputEmail").val(colunas[3].innerText);
+                $("#inputCidade").val(colunas[4].innerText);
+                $("#inputCategoria").val(colunas[5].innerText);
+            });
+
+            exibeContatos();
+        }
+    </script>
+</body>
+
+</html>
